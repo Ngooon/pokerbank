@@ -26,7 +26,7 @@ namespace Pokerbank
         {
             string playerName = this.playerName.Text;
             int startMoney = Convert.ToInt32(this.startMoney.Text);
-            Player program.MyPlayer = new Player(playerName, startMoney);
+            Player MyPlayer = new Player(playerName, startMoney);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -36,7 +36,7 @@ namespace Pokerbank
 
         private void getButton_Click(object sender, EventArgs e)
         {
-            this.result.Text = this.;
+            this.result.Text = MyPlayer.money;
         }
     }
 }

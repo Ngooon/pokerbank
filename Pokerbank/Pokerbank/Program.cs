@@ -18,15 +18,20 @@ namespace Pokerbank
             //return "Transfer succed!";
         }
 
-        public Wallet(int Money)
+        public Wallet()
         {
-            if (Money < 1)
+            this.Money = 0;
+        }
+
+        public Wallet(int money)
+        {
+            if (money < 1)
             {
 
             }
             else
             {
-                this.Money = Money
+                this.Money = money;
             }
         }
     }
@@ -35,12 +40,12 @@ namespace Pokerbank
     {
         public string Name { get; set; }
 
-        public Wallet Wallet;
+        public Wallet Wallet = new Wallet();
         
-        public Player(string Name, int startMoney)
+        public Player(string name, int startMoney)
         {
             this.Name = Name;
-            Wallet = new Wallet(startMoney);
+            this.Wallet.Money = startMoney;
         }
 
         public override string ToString()
