@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Pokerbank
 {
 
-    class Wallet
+    public class Wallet
     {
         public int Money { get; set; }
         
@@ -34,9 +35,14 @@ namespace Pokerbank
                 this.Money = money;
             }
         }
+
+        public override string ToString()
+        {
+            return "Money: " + Money.ToString();
+        }
     }
 
-    class Player
+    public class Player
     {
         public string Name { get; set; }
 
@@ -44,13 +50,60 @@ namespace Pokerbank
         
         public Player(string name, int startMoney)
         {
-            this.Name = Name;
+            
+            this.Name = name;
             this.Wallet.Money = startMoney;
         }
 
         public override string ToString()
         {
             return "Name = " + Name + ", money = " + Wallet.Money;
+        }
+
+        //public static List<Player> NewPlayerForm()
+        //{
+
+        //    Application.Run(new NewPlayersForm());
+        //    return true;
+        //}
+    }
+
+    public class Game
+    {
+        public string Name { get; set; }
+        public List<Player> Players { get; set; }
+        public DateTime StartDate { get; set; }
+
+        public Game()
+        {
+            //this.StartDate = DateTime.Now;
+            //this.Players = Program.CreatePlayersList();
+
+            
+
+        }
+
+        public Game(string name)
+        {
+            this.StartDate = DateTime.Now;
+            this.Name = name;
+            //this.Players = Program.CreatePlayersList();
+        }
+
+        public void CreateData()
+        {
+            using (NewGameForm form = new NewGameForm())
+            {
+                DialogResult result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    Game formGame = form.Game;
+                    this.Name = formGame.Name;
+                    this.Players = formGame.Players;
+                    this.StartDate = formGame.StartDate;
+                }
+            }
+            MessageBox.Show(this.Name + this.StartDate.ToString());
         }
 
     }
@@ -63,12 +116,21 @@ namespace Pokerbank
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new StartForm());
+        }
+
+        public static List<Player> CreatePlayersList()
+        {
+            List<Player> players = new List<Player>();
+            players.Add(new Player("Oscar", 100));
+            players.Add(new Player("Melvin", 50));
+            MessageBox.Show("Player created! Money: " + players[0].ToString() + "!");
+            return players;
         }
 
     }
