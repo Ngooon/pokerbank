@@ -31,12 +31,37 @@ namespace Pokerbank
             //nameLabel.Text = this.Game.Players.ToString();
         }
 
-        private void NewGame(object sender, EventArgs e)
+        private void newGame(object sender, EventArgs e)
         {
             Game.CreateData();
-            MessageBox.Show("Game data created!");
-            playerTable.DataSource = Game.Players;
-            playerTable.Update();
+            UpdateGameData();
+        }
+
+        public void UpdateGameData()
+        {
+            lblGameName.Text = Game.Name.ToString();
+            lblDate.Text = Game.StartDate.Date.ToString();
+            lblStartMoney.Text = Game.StartMoney.ToString();
+
+            //Players
+            dgvPlayers.ColumnCount = 2;
+            dgvPlayers.ColumnHeadersVisible = true;
+
+            DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
+            columnHeaderStyle.BackColor = Color.Beige;
+            columnHeaderStyle.Font = new Font("Verdana", 10, FontStyle.Bold);
+            dgvPlayers.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
+
+            dgvPlayers.Columns[0].Name = "Name";
+            dgvPlayers.Columns[1].Name = "Money";
+
+            for (int i = 0; i < Game.Players.Count; i++)
+            {
+                Player player = Game.Players[i];
+                String[] row = new string[] { player.Name, player.Wallet.Money.ToString() };
+                dgvPlayers.Rows.Add(row);
+
+            }
         }
     }
 }

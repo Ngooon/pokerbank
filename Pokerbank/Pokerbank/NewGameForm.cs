@@ -25,19 +25,58 @@ namespace Pokerbank
         {
             this.Game.Name = txbGameName.Text;
             this.Game.StartDate = Convert.ToDateTime(txbDate.Text);
+            this.Game.StartMoney = Convert.ToInt32(txbStartMoney.Text);
 
             // Players
             List<Player> players = new List<Player>();
-            foreach(DataGridViewRow row in dgvPlayers.Rows)
+            foreach (DataGridViewRow row in dgvPlayers.Rows)
             {
-                string name = Convert.ToString(row.Cells[0].Value);
-                int money = Convert.ToInt32(row.Cells[1].Value);
-                Player player = new Player(name, money);
-                players.Add(player);
+                if (row.Cells[0].Value != null) //Name is filled
+                {
+                    string name = Convert.ToString(row.Cells[0].Value);
+                    int money = Convert.ToInt32(row.Cells[1].Value);
+                    Player player = new Player(name, money);
+                    players.Add(player);
+                }  
             }
             this.Game.Players = players;
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void newRowUpdate(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            int rowIndex = e.RowIndex - 1;
+            dgvPlayers.Rows[rowIndex].Cells[1].Value = txbStartMoney.Text;
+            dgvPlayers.Rows[rowIndex].Cells[1].ReadOnly = true;
+            dgvPlayers.Rows[rowIndex].Cells[2].Value = true;
+            //foreach (DataGridViewRow row in dgvPlayers.Rows)
+            //{
+            //    int myCol = 1;
+            //    if (row.Cells[myCol].Value == null)
+            //    {
+            //        row.Cells[myCol].Value = txbStartMoney.Text;
+            //    }
+
+            //}
+        }
+
+        private void updateReadOnly(object sender, DataGridViewCellEventArgs e)
+        {
+            int colIndex = e.ColumnIndex;
+            int rowIndex = e.RowIndex;
+
+            if (colIndex == 2)
+            {
+                if (Convert.ToBoolean(dgvPlayers.Rows[rowIndex].Cells[colIndex].Value) == false)
+                {
+                    dgvPlayers.Rows[rowIndex].Cells[1].ReadOnly = false;
+                }
+                else
+                {
+                    dgvPlayers.Rows[rowIndex].Cells[1].ReadOnly = true;
+                }
+            }
         }
     }
 }

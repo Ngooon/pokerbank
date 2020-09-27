@@ -8,6 +8,18 @@ using System.Windows.Forms;
 namespace Pokerbank
 {
 
+    //public class Money
+    //{
+    //    public int myMoney { get; set; }
+
+        
+
+    //    public string StingCurrency()
+    //    {
+    //        return myMoney + " kr";
+    //    }
+    //}
+
     public class Wallet
     {
         public int Money { get; set; }
@@ -44,7 +56,20 @@ namespace Pokerbank
 
     public class Player
     {
-        public string Name { get; set; }
+        public string Name { get; set;
+            //get
+            //{
+            //    return Name;
+            //}
+            //set
+            //{
+            //    if (value != null)
+            //    {
+            //        Name = Convert.ToString(value);
+            //    }
+            //    else throw new EmptyNameException();
+            //}
+        }
 
         public Wallet Wallet = new Wallet();
         
@@ -66,11 +91,22 @@ namespace Pokerbank
         //    Application.Run(new NewPlayersForm());
         //    return true;
         //}
+
+        public class EmptyNameException : Exception
+        {
+            string message = "Name can't be empty!";
+            public override string ToString()
+            {
+                return message;
+            }
+        }
     }
 
     public class Game
     {
         public string Name { get; set; }
+
+        public int StartMoney { get; set; }
         public List<Player> Players { get; set; }
         public DateTime StartDate { get; set; }
 
@@ -101,9 +137,9 @@ namespace Pokerbank
                     this.Name = formGame.Name;
                     this.Players = formGame.Players;
                     this.StartDate = formGame.StartDate;
+                    this.StartMoney = formGame.StartMoney;
                 }
             }
-            MessageBox.Show(this.Name + this.StartDate.ToString());
         }
 
     }

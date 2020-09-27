@@ -36,9 +36,12 @@
             this.dgvPlayers = new System.Windows.Forms.DataGridView();
             this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbxStandardMoney = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.txbStartMoney = new System.Windows.Forms.TextBox();
+            this.lblStartMoneyLabel = new System.Windows.Forms.Label();
             this.gbxPlayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlayers)).BeginInit();
             this.SuspendLayout();
@@ -90,22 +93,37 @@
             this.dgvPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPlayers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colName,
-            this.colMoney});
+            this.colMoney,
+            this.cbxStandardMoney});
             this.dgvPlayers.Location = new System.Drawing.Point(7, 23);
             this.dgvPlayers.Name = "dgvPlayers";
             this.dgvPlayers.Size = new System.Drawing.Size(299, 277);
             this.dgvPlayers.TabIndex = 3;
             this.dgvPlayers.Text = "dataGridView1";
+            this.dgvPlayers.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.updateReadOnly);
+            this.dgvPlayers.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.newRowUpdate);
             // 
             // colName
             // 
+            this.colName.Frozen = true;
             this.colName.HeaderText = "Name";
             this.colName.Name = "colName";
+            this.colName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // colMoney
             // 
             this.colMoney.HeaderText = "Money";
             this.colMoney.Name = "colMoney";
+            this.colMoney.ReadOnly = true;
+            this.colMoney.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // cbxStandardMoney
+            // 
+            this.cbxStandardMoney.HeaderText = "";
+            this.cbxStandardMoney.MinimumWidth = 25;
+            this.cbxStandardMoney.Name = "cbxStandardMoney";
+            this.cbxStandardMoney.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cbxStandardMoney.Width = 25;
             // 
             // btnCancel
             // 
@@ -135,11 +153,29 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.SaveForm);
             // 
+            // txbStartMoney
+            // 
+            this.txbStartMoney.Location = new System.Drawing.Point(21, 149);
+            this.txbStartMoney.Name = "txbStartMoney";
+            this.txbStartMoney.Size = new System.Drawing.Size(228, 23);
+            this.txbStartMoney.TabIndex = 2;
+            // 
+            // lblStartMoneyLabel
+            // 
+            this.lblStartMoneyLabel.AutoSize = true;
+            this.lblStartMoneyLabel.Location = new System.Drawing.Point(21, 131);
+            this.lblStartMoneyLabel.Name = "lblStartMoneyLabel";
+            this.lblStartMoneyLabel.Size = new System.Drawing.Size(71, 15);
+            this.lblStartMoneyLabel.TabIndex = 1;
+            this.lblStartMoneyLabel.Text = "Start money";
+            // 
             // NewGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 344);
+            this.Controls.Add(this.lblStartMoneyLabel);
+            this.Controls.Add(this.txbStartMoney);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnCancel);
@@ -165,12 +201,15 @@
         private System.Windows.Forms.TextBox txbDate;
         private System.Windows.Forms.Label lblGameDate;
         private System.Windows.Forms.GroupBox gbxPlayers;
-        private System.Windows.Forms.DataGridView dgvPlayers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMoney;
+        public System.Windows.Forms.DataGridView dgvPlayers;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TextBox txbStartMoney;
+        private System.Windows.Forms.Label lblStartMoneyLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMoney;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn cbxStandardMoney;
     }
 }
 
