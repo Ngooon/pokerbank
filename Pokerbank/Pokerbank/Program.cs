@@ -126,7 +126,7 @@ namespace Pokerbank
             //this.Players = Program.CreatePlayersList();
         }
 
-        public void CreateData()
+        public bool CreateData()
         {
             using (NewGameForm form = new NewGameForm())
             {
@@ -138,7 +138,20 @@ namespace Pokerbank
                     this.Players = formGame.Players;
                     this.StartDate = formGame.StartDate;
                     this.StartMoney = formGame.StartMoney;
+                    return true;
                 }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public void Play()
+        {
+            using (GameDashboard dashboard = new GameDashboard(this))
+            {
+                dashboard.ShowDialog();
             }
         }
 

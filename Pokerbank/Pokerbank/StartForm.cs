@@ -31,17 +31,30 @@ namespace Pokerbank
             //nameLabel.Text = this.Game.Players.ToString();
         }
 
+        private void playGame(object sender, EventArgs e)
+        {
+            Game.Play();
+            //using (GameDashboard dashboard = new GameDashboard(Game))
+            //{
+            //    dashboard.Show();
+            //} 
+                
+            
+        }
+
         private void newGame(object sender, EventArgs e)
         {
-            Game.CreateData();
-            UpdateGameData();
+            if (Game.CreateData() == true)
+            {
+                UpdateGameData();
+            }
         }
 
         public void UpdateGameData()
         {
             lblGameName.Text = Game.Name.ToString();
-            lblDate.Text = Game.StartDate.Date.ToString();
-            lblStartMoney.Text = Game.StartMoney.ToString();
+            lblDate.Text = Game.StartDate.ToShortDateString() + " " + Game.StartDate.ToShortTimeString();
+            lblStartMoney.Text = Game.StartMoney.ToString() + " SEK";
 
             //Players
             dgvPlayers.ColumnCount = 2;

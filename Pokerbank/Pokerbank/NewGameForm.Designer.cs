@@ -38,7 +38,6 @@
             this.colMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbxStandardMoney = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnStart = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txbStartMoney = new System.Windows.Forms.TextBox();
             this.lblStartMoneyLabel = new System.Windows.Forms.Label();
@@ -48,42 +47,46 @@
             // 
             // txbGameName
             // 
-            this.txbGameName.Location = new System.Drawing.Point(21, 40);
+            this.txbGameName.Location = new System.Drawing.Point(24, 53);
+            this.txbGameName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txbGameName.Name = "txbGameName";
-            this.txbGameName.Size = new System.Drawing.Size(228, 23);
+            this.txbGameName.Size = new System.Drawing.Size(260, 27);
             this.txbGameName.TabIndex = 1;
             // 
             // lblGameName
             // 
             this.lblGameName.AutoSize = true;
-            this.lblGameName.Location = new System.Drawing.Point(21, 22);
+            this.lblGameName.Location = new System.Drawing.Point(24, 29);
             this.lblGameName.Name = "lblGameName";
-            this.lblGameName.Size = new System.Drawing.Size(71, 15);
+            this.lblGameName.Size = new System.Drawing.Size(89, 20);
             this.lblGameName.TabIndex = 1;
             this.lblGameName.Text = "Game name";
             // 
             // txbDate
             // 
-            this.txbDate.Location = new System.Drawing.Point(21, 94);
+            this.txbDate.Location = new System.Drawing.Point(24, 125);
+            this.txbDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txbDate.Name = "txbDate";
-            this.txbDate.Size = new System.Drawing.Size(228, 23);
+            this.txbDate.Size = new System.Drawing.Size(260, 27);
             this.txbDate.TabIndex = 2;
             // 
             // lblGameDate
             // 
             this.lblGameDate.AutoSize = true;
-            this.lblGameDate.Location = new System.Drawing.Point(21, 76);
+            this.lblGameDate.Location = new System.Drawing.Point(24, 101);
             this.lblGameDate.Name = "lblGameDate";
-            this.lblGameDate.Size = new System.Drawing.Size(31, 15);
+            this.lblGameDate.Size = new System.Drawing.Size(41, 20);
             this.lblGameDate.TabIndex = 1;
             this.lblGameDate.Text = "Date";
             // 
             // gbxPlayers
             // 
             this.gbxPlayers.Controls.Add(this.dgvPlayers);
-            this.gbxPlayers.Location = new System.Drawing.Point(300, 22);
+            this.gbxPlayers.Location = new System.Drawing.Point(343, 29);
+            this.gbxPlayers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbxPlayers.Name = "gbxPlayers";
-            this.gbxPlayers.Size = new System.Drawing.Size(312, 306);
+            this.gbxPlayers.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbxPlayers.Size = new System.Drawing.Size(357, 408);
             this.gbxPlayers.TabIndex = 2;
             this.gbxPlayers.TabStop = false;
             this.gbxPlayers.Text = "Players";
@@ -95,9 +98,11 @@
             this.colName,
             this.colMoney,
             this.cbxStandardMoney});
-            this.dgvPlayers.Location = new System.Drawing.Point(7, 23);
+            this.dgvPlayers.Location = new System.Drawing.Point(8, 31);
+            this.dgvPlayers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvPlayers.Name = "dgvPlayers";
-            this.dgvPlayers.Size = new System.Drawing.Size(299, 277);
+            this.dgvPlayers.RowHeadersWidth = 51;
+            this.dgvPlayers.Size = new System.Drawing.Size(342, 369);
             this.dgvPlayers.TabIndex = 3;
             this.dgvPlayers.Text = "dataGridView1";
             this.dgvPlayers.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.updateReadOnly);
@@ -107,15 +112,19 @@
             // 
             this.colName.Frozen = true;
             this.colName.HeaderText = "Name";
+            this.colName.MinimumWidth = 6;
             this.colName.Name = "colName";
             this.colName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colName.Width = 125;
             // 
             // colMoney
             // 
             this.colMoney.HeaderText = "Money";
+            this.colMoney.MinimumWidth = 6;
             this.colMoney.Name = "colMoney";
             this.colMoney.ReadOnly = true;
             this.colMoney.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colMoney.Width = 125;
             // 
             // cbxStandardMoney
             // 
@@ -127,27 +136,20 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(12, 299);
+            this.btnCancel.Location = new System.Drawing.Point(14, 399);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(86, 31);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // btnStart
-            // 
-            this.btnStart.Location = new System.Drawing.Point(174, 299);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 23);
-            this.btnStart.TabIndex = 4;
-            this.btnStart.Text = "Start";
-            this.btnStart.UseVisualStyleBackColor = true;
-            // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(93, 299);
+            this.btnSave.Location = new System.Drawing.Point(198, 398);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Size = new System.Drawing.Size(86, 31);
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -155,36 +157,37 @@
             // 
             // txbStartMoney
             // 
-            this.txbStartMoney.Location = new System.Drawing.Point(21, 149);
+            this.txbStartMoney.Location = new System.Drawing.Point(24, 199);
+            this.txbStartMoney.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txbStartMoney.Name = "txbStartMoney";
-            this.txbStartMoney.Size = new System.Drawing.Size(228, 23);
+            this.txbStartMoney.Size = new System.Drawing.Size(260, 27);
             this.txbStartMoney.TabIndex = 2;
             // 
             // lblStartMoneyLabel
             // 
             this.lblStartMoneyLabel.AutoSize = true;
-            this.lblStartMoneyLabel.Location = new System.Drawing.Point(21, 131);
+            this.lblStartMoneyLabel.Location = new System.Drawing.Point(24, 175);
             this.lblStartMoneyLabel.Name = "lblStartMoneyLabel";
-            this.lblStartMoneyLabel.Size = new System.Drawing.Size(71, 15);
+            this.lblStartMoneyLabel.Size = new System.Drawing.Size(89, 20);
             this.lblStartMoneyLabel.TabIndex = 1;
             this.lblStartMoneyLabel.Text = "Start money";
             // 
             // NewGameForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AcceptButton = this.btnSave;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(637, 344);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(728, 459);
             this.Controls.Add(this.lblStartMoneyLabel);
             this.Controls.Add(this.txbStartMoney);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.gbxPlayers);
             this.Controls.Add(this.lblGameDate);
             this.Controls.Add(this.txbDate);
             this.Controls.Add(this.lblGameName);
             this.Controls.Add(this.txbGameName);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "NewGameForm";
             this.Text = "New game";
             this.gbxPlayers.ResumeLayout(false);
@@ -203,7 +206,6 @@
         private System.Windows.Forms.GroupBox gbxPlayers;
         public System.Windows.Forms.DataGridView dgvPlayers;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txbStartMoney;
         private System.Windows.Forms.Label lblStartMoneyLabel;
