@@ -10,8 +10,11 @@ namespace Pokerbank
 {
     public class GameDashboard : Form
     {
+        private Game game = new Game();
+
         public GameDashboard(Game game)
         {
+            //this.game = game
             //this.ClientSize = new Size(761, 450);
             this.AutoSize = true;
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
@@ -47,17 +50,24 @@ namespace Pokerbank
 
             Label lblMoney = new Label();
             lblMoney.Location = new Point(point.X + 0, point.Y + 50);
-            lblMoney.Text = player.Wallet.Money.ToString() + " kr";
+            lblMoney.Text = player.Funds.ToString();
 
             Button btnBet = new Button();
             btnBet.Location = new Point(point.X + 0, point.Y + 100);
             btnBet.Size = new Size(100, 50);
             btnBet.Text = "Bet";
-            
+            btnBet.Name = "btnBet" + boxNumber.ToString();
+            //btnBet.Click += player.Funds.TransferToPlayer(this.game.Players[0], 50);
+
+            Label lblTable = new Label();
+            lblTable.Location = new Point(point.X + 0, point.Y + 200);
+            lblTable.Text = player.Table.ToString();
+
 
             box.Controls.Add(lblPlayer);
             box.Controls.Add(lblMoney);
             box.Controls.Add(btnBet);
+            box.Controls.Add(lblTable);
 
             return box;
         }

@@ -54,7 +54,7 @@ namespace Pokerbank
         {
             lblGameName.Text = Game.Name.ToString();
             lblDate.Text = Game.StartDate.ToShortDateString() + " " + Game.StartDate.ToShortTimeString();
-            lblStartMoney.Text = Game.StartMoney.ToString() + " SEK";
+            lblStartMoney.Text = Game.StartMoney.ToString();
 
             //Players
             dgvPlayers.ColumnCount = 2;
@@ -71,7 +71,7 @@ namespace Pokerbank
             for (int i = 0; i < Game.Players.Count; i++)
             {
                 Player player = Game.Players[i];
-                String[] row = new string[] { player.Name, player.Wallet.Money.ToString() };
+                String[] row = new string[] { player.Name, player.Funds.ToString() };
                 dgvPlayers.Rows.Add(row);
 
             }

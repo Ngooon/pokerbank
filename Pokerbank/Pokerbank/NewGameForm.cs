@@ -25,7 +25,7 @@ namespace Pokerbank
         {
             this.Game.Name = txbGameName.Text;
             this.Game.StartDate = Convert.ToDateTime(txbDate.Text);
-            this.Game.StartMoney = Convert.ToInt32(txbStartMoney.Text);
+            this.Game.StartMoney.SetTo(Convert.ToInt32(txbStartMoney.Text));
 
             // Players
             List<Player> players = new List<Player>();

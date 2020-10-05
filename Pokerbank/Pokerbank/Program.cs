@@ -1,88 +1,119 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Pokerbank
 {
-
-    //public class Money
-    //{
-    //    public int myMoney { get; set; }
-
-        
-
-    //    public string StingCurrency()
-    //    {
-    //        return myMoney + " kr";
-    //    }
-    //}
-
-    public class Wallet
+    public class Funds
     {
-        public int Money { get; set; }
+        private int Amount { get; set; }
+        private string Currency { get; set; }
         
-        public void TransferTo(Player reciver, int value)
+        public void TransferToPlayer(Player reciver, int value)
         {
-            Money -= value;
-            reciver.Wallet.Money += value;
-            //return "Transfer succed!";
+            this.Add(value);
+            reciver.Funds.Add(value);
+        }
+        
+        public void TransferToFunds(Funds reciver, int value)
+        {
+            this.Add(value);
+            reciver.Add(value);
         }
 
-        public Wallet()
+        public Funds()
         {
-            this.Money = 0;
+            this.Amount = 0;
+            this.Currency = "";
         }
 
-        public Wallet(int money)
+        public Funds(string currency)
         {
-            if (money < 1)
+            this.Amount = 0;
+            this.Currency = currency;
+        }
+
+        public Funds(int money)
+        {
+            if (money >= 0)
             {
-
+                this.Amount = money;
             }
             else
             {
-                this.Money = money;
+                this.Amount = 0;
             }
+        }
+
+        public Funds(int money, string currency)
+        {
+            if (money >= 0)
+            {
+                this.Amount = money;
+            }
+            else
+            {
+                this.Amount = 0;
+            }
+            this.Currency = currency;
+        }
+
+        public string CurrencyEndingString()
+        {
+            if (this.Currency == "")
+            {
+                return "";
+            }
+            else
+            {
+                return " " + this.Currency;
+            }
+            
         }
 
         public override string ToString()
         {
-            return "Money: " + Money.ToString();
+            return this.GetAmount().ToString() + this.CurrencyEndingString();
+        }
+
+        public void Add(int value)
+        {
+            this.Amount += value;
+        }
+
+        public void SetTo(int value)
+        {
+            this.Amount = value;
+        }
+
+        public int GetAmount()
+        {
+            return this.Amount;
         }
     }
 
     public class Player
     {
-        public string Name { get; set;
-            //get
-            //{
-            //    return Name;
-            //}
-            //set
-            //{
-            //    if (value != null)
-            //    {
-            //        Name = Convert.ToString(value);
-            //    }
-            //    else throw new EmptyNameException();
-            //}
-        }
+        public string Name { get; set; }
 
-        public Wallet Wallet = new Wallet();
+        public Funds Funds = new Funds();
+
+        public Funds Table = new Funds();
         
         public Player(string name, int startMoney)
         {
             
             this.Name = name;
-            this.Wallet.Money = startMoney;
+            this.Funds.Add(startMoney);
         }
 
         public override string ToString()
         {
-            return "Name = " + Name + ", money = " + Wallet.Money;
+            return "Name = " + Name + ", money = " + Funds.ToString();
         }
 
         //public static List<Player> NewPlayerForm()
@@ -106,7 +137,7 @@ namespace Pokerbank
     {
         public string Name { get; set; }
 
-        public int StartMoney { get; set; }
+        public Funds StartMoney = new Funds();
         public List<Player> Players { get; set; }
         public DateTime StartDate { get; set; }
 
@@ -114,9 +145,6 @@ namespace Pokerbank
         {
             //this.StartDate = DateTime.Now;
             //this.Players = Program.CreatePlayersList();
-
-            
-
         }
 
         public Game(string name)
@@ -137,7 +165,7 @@ namespace Pokerbank
                     this.Name = formGame.Name;
                     this.Players = formGame.Players;
                     this.StartDate = formGame.StartDate;
-                    this.StartMoney = formGame.StartMoney;
+                    this.StartMoney.SetTo(formGame.StartMoney.GetAmount());
                     return true;
                 }
                 else
